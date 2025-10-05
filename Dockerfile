@@ -25,15 +25,16 @@ WORKDIR /app
 
 # Copy venv from builder
 COPY --from=builder /app/.venv /app/.venv
-
 ENV PATH="/app/.venv/bin:${PATH}"
-
 
 # Copy tests directory into final stage
 COPY --from=builder /app/tests ./tests
+
+COPY cc_simple_server ./cc_simple_server
+
 
 # document the port
 EXPOSE 8000
 
 # bind to all interfaces in container
-CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "cc_simple_server.server:app", "--host", "0.0.0.0", "--port", "8000"]
