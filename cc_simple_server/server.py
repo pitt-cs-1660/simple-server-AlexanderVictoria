@@ -27,9 +27,6 @@ async def read_root():
 # POST ROUTE data is sent in the body of the request
 @app.post("/tasks/", response_model=TaskRead)
 async def create_task(task_data: TaskCreate):
-    from cc_simple_server.database import get_db_connection 
-    from cc_simple_server.models import TaskRead
-    ...
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute(
@@ -53,9 +50,6 @@ async def create_task(task_data: TaskCreate):
 # GET ROUTE to get all tasks
 @app.get("/tasks/", response_model=list[TaskRead])
 async def get_tasks():
-    from cc_simple_server.database import get_db_connection 
-    from cc_simple_server.models import TaskRead
-    ...
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM tasks")
@@ -69,10 +63,6 @@ async def get_tasks():
 # UPDATE ROUTE data is sent in the body of the request and the task_id is in the URL
 @app.put("/tasks/{task_id}/", response_model=TaskRead)
 async def update_task(task_id: int, task_data: TaskCreate):
-    from fastapi import HTTPException
-    from cc_simple_server.database import get_db_connection 
-    from cc_simple_server.models import TaskRead
-    ...
     conn = get_db_connection()
     cursor = conn.cursor()
 
@@ -102,9 +92,6 @@ async def update_task(task_id: int, task_data: TaskCreate):
 # DELETE ROUTE task_id is in the URL
 @app.delete("/tasks/{task_id}/")
 async def delete_task(task_id: int):
-    from fastapi import HTTPException
-    from cc_simple_server.database import get_db_connection 
-    ...
     conn = get_db_connection()
     cursor = conn.cursor()
 
