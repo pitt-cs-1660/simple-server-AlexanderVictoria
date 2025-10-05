@@ -9,6 +9,7 @@ WORKDIR /app
 
 # copy only dependency files first (better caching)
 COPY pyproject.toml ./
+COPY tests ./tests
 
 ENV VIRTUAL_ENV=/app/.venv
 ENV PATH="/app/.venv/bin:${PATH}"
