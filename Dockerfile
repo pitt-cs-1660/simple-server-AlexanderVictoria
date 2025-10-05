@@ -13,7 +13,7 @@ COPY tests ./tests
 
 ENV VIRTUAL_ENV=/app/.venv
 ENV PATH="/app/.venv/bin:${PATH}"
-ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PYTHONPATH=/app:$PYTHONPATH
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 
 # install dependencies with uv
 RUN uv sync --no-install-project --no-editable
@@ -26,6 +26,7 @@ WORKDIR /app
 # Copy venv from builder
 COPY --from=builder /app/.venv /app/.venv
 ENV PATH="/app/.venv/bin:${PATH}"
+ENV PYTHONPATH=/app:$PYTHONPATH
 
 # Copy tests directory into final stage
 COPY --from=builder /app/tests ./tests
