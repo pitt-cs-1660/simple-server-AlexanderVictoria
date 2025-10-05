@@ -13,7 +13,7 @@ COPY tests ./tests
 
 ENV VIRTUAL_ENV=/app/.venv
 ENV PATH="/app/.venv/bin:${PATH}"
-ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PYTHONPATH=/app:$PYTHONPATH
 
 # install dependencies with uv
 RUN uv sync --no-install-project --no-editable
