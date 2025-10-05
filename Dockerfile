@@ -26,6 +26,9 @@ WORKDIR /app
 # Copy venv from builder
 COPY --from=builder /app/.venv /app/.venv
 
+ENV PATH="/app/.venv/bin:${PATH}"
+
+
 # Copy tests directory into final stage
 COPY --from=builder /app/tests ./tests
 
